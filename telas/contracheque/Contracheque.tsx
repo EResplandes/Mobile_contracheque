@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, Pressable } from 'react-native';
-import { styles } from '/xampp/htdocs/Projeto_contracheque/Mobile/Projeto/Styles'; // Importe os estilos do arquivo styles.js
+import { styles } from '../contracheque/style';
 
 const Contracheques = ({ contracheques, VisualizaPDF, atualizaStatus, setLogin }) => {
   return (

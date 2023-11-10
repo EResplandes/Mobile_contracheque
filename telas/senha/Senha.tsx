@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
-import { styles } from '/xampp/htdocs/Projeto_contracheque/Mobile/Projeto/Styles';
+import { styles } from '/xampp/htdocs/Projeto_contracheque/Mobile/Projeto/telas/senha/Style';
 
 const AlteracaoSenha = ({
   senha_nova,

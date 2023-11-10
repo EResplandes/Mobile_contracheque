@@ -16,14 +16,8 @@ import {
 import {
   SafeAreaView,
   ScrollView,
-  Image,
-  StyleSheet,
   Text,
   View,
-  TextInput,
-  Pressable,
-  FlatList,
-  TouchableOpacity,
 } from 'react-native';
 
 type SectionProps = PropsWithChildren<{
@@ -31,7 +25,6 @@ type SectionProps = PropsWithChildren<{
 }>;
 
 function App(): JSX.Element {
-  
   const [login, setLogin] = useState('deslogado');
   const [erro, setErro] = useState(false);
   const [cpf, setCPF] = useState('');
