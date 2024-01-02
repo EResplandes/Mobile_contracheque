@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PDFView from 'react-native-pdf';
 import type {PropsWithChildren} from 'react';
-import {Linking} from 'react-native';
 import {styles} from './Styles';
 import Login from '../Projeto/telas/login/Login';
 import Contracheques from './telas/contracheque/Contracheque';
@@ -41,6 +40,10 @@ function App(): JSX.Element {
   const handleCPFChange = cpf => {
     setCPF(cpf);
   };
+
+  useEffect(()=>{
+    buscaContracheque(id, token, setContracheques)
+  }, [login]);
 
   // Seta o valor do campo password
   const handleSenhaChange = password => {
@@ -110,6 +113,8 @@ function App(): JSX.Element {
         </SafeAreaView>
       );
     } else {
+      console.log("Esse é meu id: " + id);
+      console.log("Esse é meu token: " + token);
       return (
         <SafeAreaView style={styles.fundo}>
           <View style={styles.contrachequeDivHeader}>
@@ -117,6 +122,8 @@ function App(): JSX.Element {
           </View>
           {login === 'logado' ? (
             <Contracheques
+              id ={id}
+              token={token}
               contracheques={contracheques}
               VisualizaPDF={VisualizaPDF}
               atualizaStatus={id => atualizaStatus(id, token)} // Passe o token como argumento

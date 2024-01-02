@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Image, Pressable } from 'react-native';
-import { styles } from '../contracheque/style';
+import { styles } from '../contracheque/Style';
+import { autenticar, buscaContracheque } from '../../functions';
 
-const Contracheques = ({ contracheques, VisualizaPDF, atualizaStatus, setLogin }) => {
+const Contracheques = ({ id, token, contracheques, VisualizaPDF, atualizaStatus, setLogin }) => {
+  const [carregando, setCarregando] = useState(true); // Estado inicial de carregamento
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCarregando(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []); 
+
+  if (carregando) {
+    return (
+      <View style={styles.indicadorDeCarregamento}>
+        <Text style={styles.indicadorFonte}>Carregando...</Text>
+      </View>
+    );
+  }
+
   return (
     <ScrollView style={styles.scrollView}>
       {Array.isArray(contracheques) &&

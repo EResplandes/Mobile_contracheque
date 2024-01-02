@@ -1,7 +1,9 @@
 import {Linking} from 'react-native';
 
+const baseURL = 'https://719e-85-113-93-90.ngrok-free.app/';
+
 export function VisualizaPDF(diretorio) {
-  const baseURL = 'https://a95c-85-113-92-2.ngrok-free.app/storage/';
+  const baseURL = 'https://719e-85-113-93-90.ngrok-free.app/storage/';
 
   Linking.openURL(baseURL + diretorio).catch(err =>
     console.error('Erro ao abrir o link', err),
@@ -10,7 +12,7 @@ export function VisualizaPDF(diretorio) {
 
 export function atualizaStatus(id, token) {
   fetch(
-    'https://a95c-85-113-92-2.ngrok-free.app/api/contracheque/atualizaStatus/' +
+    'https://719e-85-113-93-90.ngrok-free.app/api/contracheque/atualizaStatus/' +
       id,
     {
       method: 'GET',
@@ -22,20 +24,18 @@ export function atualizaStatus(id, token) {
 }
 
 export function buscaContracheque(id, token, setContracheques) {
-  fetch(
-    'https://a95c-85-113-92-2.ngrok-free.app/api/contracheque/busca/' + id,
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + token,
-      },
+  fetch('https://719e-85-113-93-90.ngrok-free.app/api/contracheque/busca/' + id, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + token,
     },
-  )
+  })
     .then(response => response.json())
     .then(data => {
       console.log(data);
       const contrachequesData = data['Contracheques: '];
+      console.log(contrachequesData);
       setContracheques(contrachequesData);
       console.log(contrachequesData);
     })
@@ -54,7 +54,7 @@ export function alteraSenha(
   setPrimeiroAcesso,
 ) {
   fetch(
-    'https://a95c-85-113-92-2.ngrok-free.app/api/funcionario/alteraSenha/' + id,
+    'https://719e-85-113-93-90.ngrok-free.app/api/funcionario/alteraSenha/' + id,
     {
       method: 'POST',
       headers: {
@@ -93,7 +93,7 @@ export function autenticar(
   setToken,
   setId,
 ) {
-  fetch('https://a95c-85-113-92-2.ngrok-free.app/api/autenticacao/login', {
+  fetch('https://719e-85-113-93-90.ngrok-free.app/api/autenticacao/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -103,14 +103,9 @@ export function autenticar(
     .then(response => response.json())
     .then(data => {
       console.log(data);
-
       const token = data['Token: '];
       const funcionarioData = data['1'][0];
       const id = funcionarioData.id;
-      const nomeCompleto = funcionarioData.nome_completo;
-      const email = funcionarioData.email;
-      const usuarioCpf = funcionarioData.cpf;
-      const tipoUsuario = funcionarioData.tipo_usuario;
       const primeiroAcesso = funcionarioData.primeiro_acesso;
 
       setPrimeiroAcesso(primeiroAcesso);

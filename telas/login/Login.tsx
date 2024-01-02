@@ -1,8 +1,24 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
-import { styles } from '/xampp/htdocs/Projeto_contracheque/Mobile/Projeto/telas/login/Style'
+import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import {styles} from '../login/Style';
 
-const Login = ({ erro, handleCPFChange, cpf, handleSenhaChange, password, autenticar, buscaContracheque }) => {
+const formatarCPF = cpf => {
+  // Remove todos os caracteres não numéricos do CPF
+  const cpfNumerico = cpf.replace(/\D/g, '');
+
+  // Formata o CPF no padrão 000.000.000-00
+  return cpfNumerico.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+};
+
+const Login = ({
+  erro,
+  handleCPFChange,
+  cpf,
+  handleSenhaChange,
+  password,
+  autenticar,
+  buscaContracheque,
+}) => {
   return (
     <View>
       <Image
@@ -21,11 +37,12 @@ const Login = ({ erro, handleCPFChange, cpf, handleSenhaChange, password, autent
         <Text style={styles.inputLabel}>CPF:</Text>
 
         <TextInput
+          maxLength={14}
           placeholderTextColor="white"
           style={styles.inputLogin}
           placeholder="Insira seu CPF"
           keyboardType="numeric"
-          onChangeText={handleCPFChange}
+          onChangeText={text => handleCPFChange(formatarCPF(text))}
           value={cpf}
         />
 

@@ -52,4 +52,15 @@ export const styles = StyleSheet.create({
     padding: 5,
     textAlign: 'center',
   },
+
+  indicadorDeCarregamento: {
+    marginTop: 400,
+    marginLeft: 165,
+    fontSize: 100,
+  },
+
+  indicadorFonte: {
+    color: '#FFFFFF'
+  },
+
 });
